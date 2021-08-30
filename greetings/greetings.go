@@ -15,7 +15,7 @@ func Hello(name string, more string) (string, error) {
     }
 
     // Return a greeting that embeds the name in a message.
-    // more will be ignored by Sprintf() if no second %v in string
+    // if only one %v, we will have a message saying extra string
     message := fmt.Sprintf(randomFormat(), name, more)
     return message, nil
 }
