@@ -11,10 +11,16 @@ func main() {
     // quote from quote module
     fmt.Println(quote.Go())
 
+    // A slice of names.
+    names := []string{"Isis", "Ra", "Darrin"}
+
     // greeting from my module
-    message, err := greetings.Hello("Test", "Boom shacka lacka")
+    messagemap, err := greetings.Hellos(names)
     if err != nil {
        log.Fatal(err)
     }
-    fmt.Println(message)
+
+    for key, val := range messagemap {
+        fmt.Printf("Key: %d, Value: %s\n", key, val)
+    }
 }
