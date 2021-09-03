@@ -25,8 +25,12 @@ func main() {
     }
 
     fmt.Println("Testing for loop")
-    res, err := forloop_sum(10)
+    res, err := forloop_sum(2)
     fmt.Printf("sum: %d\n", res)
+
+    s := []int{1, 2, 3, 4}
+    res = reduce_sum(s)
+    fmt.Printf("reduced: %d\n", res)
 }
 
 func forloop_sum(iters int) (int, error) {
@@ -37,9 +41,10 @@ func forloop_sum(iters int) (int, error) {
     return sum, nil
 }
 
-// todo - recursion
-//fun reduce_sum(iters int) (int) {
-//    if basecase
-//       return
-//    return recurse
-//}
+// reduce a slice
+func reduce_sum(myslice []int) (int) {
+    if len(myslice) == 1 {
+        return myslice[0]
+    }
+    return myslice[len(myslice)-1] + reduce_sum(myslice[:len(myslice)-1])
+}
