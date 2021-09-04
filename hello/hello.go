@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "log"
+    "math"
     "rsc.io/quote"
     "ironlotuscomputer.com.au/greetings"
 )
@@ -31,6 +32,27 @@ func main() {
     s := []int{1, 2, 3, 4}
     res = reduce_sum(s)
     fmt.Printf("reduced: %d\n", res)
+
+    // interesting
+    num := 3
+    for {
+        if num < 1 {
+            break
+        } else {
+            num--
+        }
+    }
+    fmt.Printf("the final number is: %d\n", num)
+
+    // also interesting
+    if x := 6; x < 5 {
+        fmt.Printf("pre if statement set x to %d\n", x)
+    } else {
+        fmt.Printf("pre if statement variable declaration available in else: %d\n", x)
+    }
+
+    // square root algorithm
+    fmt.Println(Sqrt(9))
 }
 
 func forloop_sum(iters int) (int, error) {
@@ -47,4 +69,16 @@ func reduce_sum(myslice []int) (int) {
         return myslice[0]
     }
     return myslice[len(myslice)-1] + reduce_sum(myslice[:len(myslice)-1])
+}
+
+func Sqrt(x float64) float64 {
+    guess := 1.0
+    precision := math.Pow(10, -10)
+
+    fmt.Println("Computing square root")
+    for math.Abs(guess * guess - x) > precision {
+        guess -= (guess*guess - x) / (2*guess)
+        fmt.Printf("Guess: %.10f\n", guess)
+    }
+    return guess
 }
