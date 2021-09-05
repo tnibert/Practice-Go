@@ -4,10 +4,14 @@ import (
     "fmt"
     "log"
     "math"
+    "time"
     "rsc.io/quote"
     "ironlotuscomputer.com.au/greetings"
 )
 
+/*
+This has just become a very long series of experiments
+*/
 func main() {
     // quote from quote module
     fmt.Println(quote.Go())
@@ -53,6 +57,20 @@ func main() {
 
     // square root algorithm
     fmt.Println(Sqrt(9))
+
+    // switch with no condition is like switch true
+    t := time.Now()
+    switch {
+    case t.Hour() < 12:
+         fmt.Println("Good morning!")
+    case t.Hour() < 17:
+         fmt.Println("Good afternoon.")
+    default:
+        fmt.Println("Good evening.")
+    }
+
+    // test defer
+    defer_helloworld()
 }
 
 func forloop_sum(iters int) (int, error) {
@@ -81,4 +99,12 @@ func Sqrt(x float64) float64 {
         fmt.Printf("Guess: %.10f\n", guess)
     }
     return guess
+}
+
+func defer_helloworld() {
+     // world will print when function returns
+     defer fmt.Println("world")
+     // apparently defer executes in reverse order
+     defer fmt.Println("When is this one executed?")
+     fmt.Println("hello")
 }
